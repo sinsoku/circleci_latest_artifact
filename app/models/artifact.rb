@@ -1,7 +1,7 @@
 class Artifact
   include ActiveModel::Model
 
-  attr_accessor :username, :project, :branch, :filename, :format, :circle_token
+  attr_accessor :username, :project, :branch, :filename, :circle_token
 
   def project_url
     "https://circleci.com/api/v1/project/#{username}/#{project}"
@@ -24,8 +24,7 @@ class Artifact
   end
 
   def latest_url
-    path = format.nil? ? filename : "#{filename}.#{format}"
-    artifact_urls.find { |url| url =~ /#{path}/ }
+    artifact_urls.find { |url| url =~ /#{filename}/ }
   end
 
   private
