@@ -11,3 +11,7 @@ add this line to your README:
 ```
 
 If you need to access private repos, give a `circle_token` params.
+
+## Heroku Button
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
