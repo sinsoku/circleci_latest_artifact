@@ -1,7 +1,8 @@
 class Artifact
   include ActiveModel::Model
 
-  attr_accessor :username, :project, :branch, :filename, :circle_token
+  ATTRIBUTES = %i(username project branch filename circle_token).freeze
+  attr_accessor(*ATTRIBUTES)
 
   def project_url
     "https://circleci.com/api/v1/project/#{username}/#{project}"

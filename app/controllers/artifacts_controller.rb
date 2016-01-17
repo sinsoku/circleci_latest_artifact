@@ -7,6 +7,6 @@ class ArtifactsController < ApplicationController
   private
 
   def artifact_params
-    params.permit(:username, :project, :branch, :filename, :circle_token)
+    params.permit(*Artifact::ATTRIBUTES)
   end
 end
