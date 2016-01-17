@@ -7,20 +7,11 @@ class Artifact
     "https://circleci.com/api/v1/project/#{username}/#{project}"
   end
 
-  def single_build_url
-    with_token "#{project_url}/tree/#{branch}"
-  end
-
-  def artifacts_of_a_build_url
-    with_token "#{project_url}/#{build_num}/artifacts"
-  end
-
-  def build_num
-    get_json(single_build_url)[0]['build_num']
-  end
-
   def artifact_urls
-    get_json(artifacts_of_a_build_url).map { |x| x['url'] }
+    nums = branch_builds.map { |x| x['build_num'] }
+    json = artifacts(nums[0])
+    json = artifacts(nums[1]) if json.blank?
+    json.map { |x| x['url'] }
   end
 
   def latest_url
@@ -37,5 +28,13 @@ class Artifact
     uri = URI.parse url
     res = Net::HTTP.get(uri)
     ActiveSupport::JSON.decode res
+  end
+
+  def branch_builds
+    get_json with_token("#{project_url}/tree/#{branch}")
+  end
+
+  def artifacts(num)
+    get_json with_token("#{project_url}/#{num}/artifacts")
   end
 end
