@@ -1,4 +1,4 @@
-# CircleCI latesl artifact
+# CircleCI latest artifact
 
 This app provides a way to redirect to latest artifacts on CircleCI.
 
