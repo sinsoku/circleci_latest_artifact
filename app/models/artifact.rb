@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Artifact
   include ActiveModel::Model
 
